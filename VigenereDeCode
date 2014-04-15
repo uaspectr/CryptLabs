@@ -1,0 +1,151 @@
+// VigenereDeCode.cpp: определяет точку входа для консольного приложения.
+//
+
+#include "stdafx.h"
+#include "stdafx.h"
+#include <conio.h>
+#include "windows.h"
+#include <iostream>
+#include <string>
+#include <conio.h>
+#include <stdlib.h>
+#pragma warning(disable :4996)
+
+using namespace std;
+
+char rect[26]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char tabula_recta[26][26];
+char code[256];
+int len=0;
+char key[128];
+int len_of_key=0;
+int x=0;
+int y=0;
+int len_of_k=0;
+char tmp[128];
+
+string result_string="";
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	// генерация tabularecta
+	int shift=0;
+
+	for (int i = 0; i < 26; i++)
+		for (int j = 0; j < 26; j++)
+		{
+			shift = j + i;
+			if (shift >= 26) shift = shift % 26;
+			tabula_recta[i][j] = rect[shift];
+		}
+	
+
+		// чтение их файла входного сообщения
+		FILE *fp=fopen("C:\\Users\\uaspectr\\Documents\\Visual Studio 2012\\Projects\\VigenereCode\\VigenereCode\\out.txt","r");
+
+		if (fp==NULL)
+		{
+			printf("Error: in file not found\n");
+			return 0;
+		}
+
+		while(!feof(fp))
+		{
+			fgets(code,2048,fp);
+		}
+		fclose(fp);
+		len=strlen(code);
+		printf("code: ");
+		for (int i = 0; i < len; i++)
+		{
+			printf("%c",code[i]);
+		}
+		printf("\n");
+		system("pause");
+		
+
+
+
+		// ввод и формирование ключа
+		printf("\nEnter key\n key: ");
+		gets(key);
+		len_of_key=strlen(key);
+		for (int i = 0; i < len_of_key; i++)
+		{
+			tmp[i]=key[i];
+		}
+
+		while(len_of_k<len)
+		{
+			for (int i = 0; i < len_of_key; i++)
+			{
+				key[i+len_of_k]=tmp[i];
+			}
+			len_of_k=strlen(key);
+		}
+		
+
+		// вывод ключа
+		printf("\nKey: ");
+		for (int i = 0; i < len; i++)
+		{
+			printf("%c",key[i]);
+		}
+		printf("\n");
+		system("pause");
+		
+
+
+		// дешифровка входного сообщения
+		int l = 0;
+		bool flag = false;
+		for (int i = 0; i < len; i++)
+		{
+			l = 0;
+			flag = false;
+
+			while ((l < 26) && (flag == false))
+			{
+				if (key[i] == rect[l])
+				{
+
+					x = l;
+					flag = true;
+				}
+				l++;
+			}
+
+
+			l=0;
+			flag=false;
+
+			while ((l<26) && (flag == false))
+			{
+				if (code[i] == tabula_recta[x][l])
+				{
+					y = l;
+					flag = true;
+				}
+				l++;
+			}
+			result_string+=rect[y];
+
+		}
+		
+
+		// вывод выходного сообщения в файл
+		FILE *fp1=fopen("out.txt","w");
+		system("cls");
+		printf("decode: ");
+		printf("%s",result_string.c_str());
+		printf("\n");
+		system("pause");
+		fprintf(fp1,"%s",result_string.c_str());
+
+		fclose(fp1);
+		
+
+
+		return 0;
+}
+
