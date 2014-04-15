@@ -1,0 +1,47 @@
+#include "stdafx.h"
+#include <conio.h>
+#include <string.h>
+#pragma warning(disable :4996)
+
+char buf[256];
+int len=0;
+int key;
+
+int _tmain(int argc, char* argv[])
+{
+	
+	FILE *In=fopen("C:\\Users\\uaspectr\\Documents\\Visual Studio 2012\\Projects\\CaesarCode\\CaesarCode\\out.txt","r");
+	if (In==NULL)
+	{
+		printf("Error: IN file not found\n");
+		getch();
+		return 1;
+		
+	}
+	FILE *Out=fopen("decode.txt","w");
+	
+	
+	printf("Please enter KEY for decode:");
+	scanf("%d",&key);
+
+	while (!feof(In))
+	{
+		fgets(buf,256,In);
+	}
+	fclose(In);
+	
+	len=strlen(buf);
+
+
+	for (int i = 0; i < len; i++)
+	{
+		buf[i]-=key;
+		fprintf(Out,"%c",buf[i]);
+	}
+
+	fclose(Out);
+
+	printf("\nFinish...press any key\n");
+	getch();
+	return 0;
+}
