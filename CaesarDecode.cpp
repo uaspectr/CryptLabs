@@ -1,5 +1,3 @@
-#include "stdafx.h"
-#include <conio.h>
 #include <string.h>
 #include <string>
 #include <iostream>
@@ -68,7 +66,6 @@ int main(int argc, char* argv[])
 	}
 
 
-	printf("\nFinish...press any key\n");
-	getch();
+
 	return 0;
 }
