@@ -1,8 +1,6 @@
 // CaesarCode.cpp: определяет точку входа для консольного приложения.
 //
 
-#include "stdafx.h"
-#include <conio.h>
 #include <string.h>
 #include <string>
 #include <iostream>
@@ -72,8 +70,6 @@ int main(int argc, char* argv[])
 
 
 	/*system("copy /A out.txt C:\\Users\\uaspectr\\Documents\\\"Visual Studio 2012\"\\Projects\\CaesarDecode\\ConsoleApplication1\\out.txt /A");*/
-	printf("\nFinish...press any key\n");
-	getch();
 	return 0;
 }
 
