@@ -1,9 +1,6 @@
 // VigenereDeCode.cpp: определяет точку входа для консольного приложения.
 //
 
-#include "stdafx.h"
-#include "stdafx.h"
-#include <conio.h>
 #include <string.h>
 #include <string>
 #include <iostream>
@@ -53,7 +50,6 @@ int main(int argc, char* argv[])
 	if(argc!=3)
 	{
 		printf("Error: Invalid count of arguments");
-		_getch();
 		return 1;
 	}
 
@@ -124,8 +120,7 @@ int main(int argc, char* argv[])
 			printf("%c",key[i]);
 		}
 		printf("\n");
-		system("pause");
-		
+
 
 
 		// дешифровка входного сообщения
