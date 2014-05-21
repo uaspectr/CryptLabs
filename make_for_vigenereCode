@@ -1,0 +1,1 @@
+all : VigenereCode.cpp ; g++ VigenereCode.cpp -o VigenereCode
