@@ -14,8 +14,8 @@ int length=0,len=0;
 int x=0,y=0;
 
 bool flag=false;
-char key[10000];
-char tmp[10000];
+char **key;
+char **tmp;
 int cnt;
 int k;
 int len_of_key=0;
@@ -73,9 +73,13 @@ fclose(in);
 buf=new string [size];
 
 char **res_string= new char * [size];
+char **key = new char * [size];
+char **tmp = new char * [size];
 for (int i = 0; i < size; i++)
 {
 res_string[i]= new char[size];
+key[i]=new char[size];
+tmp[i]=new char[size];
 }
 
 int shift=0;
